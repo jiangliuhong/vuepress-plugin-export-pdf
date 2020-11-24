@@ -24,7 +24,7 @@ module.exports = {
         ]
     },
     plugins:[
-        ['vuepress-plugin-export'],
+        ['vuepress-plugin-export-pdf'],
         [
             'vuepress-plugin-medium-zoom',
             {
