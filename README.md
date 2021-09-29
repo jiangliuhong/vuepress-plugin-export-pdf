@@ -18,7 +18,7 @@
 安装依赖包
 
 ```
-npm -i vuepress-plugin-export-pdf-plus
+npm -i vuepress-plugin-export-pdf-pro
 ```
 
 在`.vuepress/config.js`文件中增加内容：
@@ -26,7 +26,7 @@ npm -i vuepress-plugin-export-pdf-plus
 ```
 plugins: [
     [
-      'vuepress-plugin-export-pdf-plus'
+      'vuepress-plugin-export-pdf-pro'
     ]
   ]
 ```
