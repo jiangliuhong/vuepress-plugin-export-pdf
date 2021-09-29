@@ -1,6 +1,6 @@
 {
-  "name": "vuepress-plugin-export-pdf",
-  "version": "1.0.2",
+  "name": "vuepress-plugin-export-pdf-pro",
+  "version": "1.0.0",
   "description": "export pdf",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eamiear/vuepress-plugin-export-pdf.git"
+    "url": "git+https://github.com/jiangliuhong/vuepress-plugin-export-pdf.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eamiear/vuepress-plugin-export-pdf/issues"
+    "url": "https://github.com/jiangliuhong/vuepress-plugin-export-pdf/issues"
   },
-  "homepage": "https://github.com/eamiear/vuepress-plugin-export-pdf#readme",
+  "homepage": "https://github.com/jiangliuhong/vuepress-plugin-export-pdf#readme",
   "dependencies": {
     "easy-pdf-merge": "^0.2.0",
     "puppeteer": "^1.11.0"

@@ -3,6 +3,7 @@ const PDFMerge = require('easy-pdf-merge')
 const { join } = require('path')
 const { dev } = require('vuepress')
 const { fs, logger, chalk } = require('@vuepress/shared-utils')
+const { stringify } = require('querystring')
 const { red, yellow, gray } = chalk
 
 // Keep silent before running custom command.
@@ -46,12 +47,31 @@ module.exports = (opts = {}, ctx) => ({
   }
 })
 
+function eachPathByNav(navList) {
+  var pathOrders = []
+  navList.forEach((nav,index) => {
+      if (nav.items != null && nav.items != undefined) {
+          var ep = eachPathByNav(nav.items)
+          if (ep.length > 0) {
+              ep.forEach((v, i) => pathOrders.push(v));
+          }
+      } else {
+          pathOrders.push(nav.link)
+      }
+  })
+  return pathOrders
+}
+
 async function generatePDF(ctx, port, host) {
-  const { pages, tempPath, siteConfig } = ctx
+  const { pages, tempPath, siteConfig,themeConfig } = ctx
+
+  const pathOrders = eachPathByNav(themeConfig.nav)
+
   const tempDir = join(tempPath, 'pdf')
   fs.ensureDirSync(tempDir)
 
   let exportPages = pages.map(page => {
+
     const regexp = new RegExp(/[(\d)]/)
     const index = regexp.exec(page.path)
     const idx = index && index[0]
@@ -63,6 +83,15 @@ async function generatePDF(ctx, port, host) {
       path: `${tempDir}/${page.key}.pdf`
     }
   })
+
+  exportPages.forEach((page,index)=>{
+    var orderIndex = pathOrders.indexOf(page.url)
+    if(orderIndex == -1){
+        orderIndex = 9999
+    }
+    page.index = orderIndex
+  })
+
   exportPages =  exportPages.sort((a, b) => a.index - b.index)
 
   const browser = await puppeteer.launch()
@@ -80,6 +109,13 @@ async function generatePDF(ctx, port, host) {
       location,
       { waitUntil: 'networkidle2' }
     )
+
+    await browserPage.evaluate(() => {
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        navbar.style.display = 'none';
+      }
+    });
 
     await browserPage.pdf({
       path: pagePath,
