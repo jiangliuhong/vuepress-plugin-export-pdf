@@ -94,7 +94,7 @@ async function generatePDF(ctx, port, host) {
 
   exportPages =  exportPages.sort((a, b) => a.index - b.index)
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({args: ["--no-sandbox"]})
   const browserPage = await browser.newPage()
 
   for (let i = 0; i < exportPages.length; i++) {

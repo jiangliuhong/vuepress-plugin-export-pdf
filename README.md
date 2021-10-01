@@ -8,10 +8,16 @@
 修改自 [vuepress-plugin-export](https://github.com/ulivz/vuepress-plugin-export)
 修改自 [vuepress-plugin-export-pdf](https://github.com/eamiear/vuepress-plugin-export-pdf.git)
 
-新增功能：
+## 更新内容
+
+### 1.0.0
 
 - 根据菜单配置(themeConfig.nav)排序
 - 导出时，隐藏顶栏菜单（防止菜单遮挡内容）
+
+### 1.0.2
+
+- 解决centos下报错问题：`Running as root without --no-sandbox is not supported.`
 
 ## 使用
 
