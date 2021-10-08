@@ -38,3 +38,7 @@ plugins: [
 ```
 
 执行命令：`vuepress export docs`
+
+## 后续计划
+
+- [ ] 导出时增加书签  
